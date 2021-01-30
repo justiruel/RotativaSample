@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Rotativa.AspNetCore;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace RotativaSample
 {
@@ -52,6 +54,9 @@ namespace RotativaSample
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //RotativaConfiguration.Setup(AppContext.BaseDirectory, "WkHtmlToPdf");
+            RotativaConfiguration.Setup(env.ContentRootPath, "WkHtmlToPdf");
         }
     }
 }

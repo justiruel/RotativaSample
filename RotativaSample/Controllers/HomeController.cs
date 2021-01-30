@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Rotativa.AspNetCore;
 using RotativaSample.Models;
 
 namespace RotativaSample.Controllers
@@ -20,6 +21,7 @@ namespace RotativaSample.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.invoice = "Invoice 00014";
             return View();
         }
 
@@ -32,6 +34,12 @@ namespace RotativaSample.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult ViewPdf(string invoice)
+        {
+            return new ViewAsPdf("ViewPdf", new DataSampleViewModel { invoiceNo = invoice });
+            //return View();
         }
     }
 }
